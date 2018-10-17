@@ -17,26 +17,38 @@ def get_db_connection():
 
 def execute_query(connection, query):
     cursor = connection.cursor()
-    cursor.execute("""SELECT * from note""")
+    cursor.execute(query)
     return cursor.fetchall()
 
-@app.route('/notes', methods=['GET', 'POST'])
-def get_notes():
+def get_data(query):
     connection = ""
-    response = []
     try:
         connection = get_db_connection()
     except:
         response = {"err": "Unable to connect to the database"}
         return jsonify(response), 404
-        
+
     try:
-        response = execute_query(connection, """SELECT * from note""")
+        response = execute_query(connection, query)
     except:
         response = {"err": "General SQL Error"}
         return jsonify(response), 404
-
     return jsonify(response), 200
+
+@app.route('/notes', methods=['GET'])
+def get_notes():
+    data = get_data("""SELECT * from note""")
+    return data
+
+@app.route('/users', methods=['GET'])
+def get_users():
+    data = get_data("""SELECT * from users""")
+    return data
+
+@app.route('/palaces', methods=['GET'])
+def get_palaces():
+    data = get_data("""SELECT * from palace""")
+    return data
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
