@@ -91,7 +91,7 @@ def note(note_id):
         data = get_data("""SELECT * from note WHERE note_id={};""".format(note_id))
         return data
     if request.method == 'DELETE':
-        data = delete_data("""DELETE * from note WHERE note_id={};""".format(note_id))
+        data = delete_data("""DELETE from note WHERE note_id={};""".format(note_id))
         return data
 
 @app.route('/newnote', methods=['POST'])
@@ -117,7 +117,7 @@ def user(user_id):
         data = get_data("""SELECT * from users WHERE user_id={};""".format(user_id))
         return data
     if request.method == 'DELETE':
-        data = delete_data("""DELETE * from users WHERE user_id={};""".format(user_id))
+        data = delete_data("""DELETE from users WHERE user_id={};""".format(user_id))
         return data
 
 @app.route('/newuser', methods=['POST'])
@@ -141,7 +141,7 @@ def palace(palace_id):
         data = get_data("""SELECT * from palace WHERE palace_id={};""".format(palace_id))
         return data
     if request.method == 'DELETE':
-        data = delete_data("""DELETE * from palace WHERE palace_id={};""".format(palace_id))
+        data = delete_data("""DELETE from palace WHERE palace_id={};""".format(palace_id))
         return data
 
 @app.route('/newpalace', methods=['POST'])
