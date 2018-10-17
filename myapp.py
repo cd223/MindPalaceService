@@ -23,7 +23,7 @@ def get_notes():
         
     try:
         cur = conn.cursor()
-        cur.execute("""SELECT * from notes""")
+        cur.execute("""SELECT * from note""")
         rows = cur.fetchall()
         out = []
         for row in rows:
