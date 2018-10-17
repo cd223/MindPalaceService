@@ -55,7 +55,8 @@ def insert_data(query, data):
         return jsonify(response), 404
     cursor.close()
     connection.close()
-    return jsonify(response), 200
+    response = {"Success": "New value(s) inserted"}
+    return jsonify(response), 201
 
 
 @app.route('/notes', methods=['GET'])
@@ -87,7 +88,7 @@ def users():
 @app.route('/user/<user_id>', methods=['GET', 'DELETE'])
 def user(user_id):
     if request.method == 'GET':
-        data = get_data("SELECT * from users WHERE user_id={};".format(user_id))
+        data = get_data("""SELECT * from users WHERE user_id={};""".format(user_id))
         return data
     if request.method == 'DELETE':
         data = get_data("""DELETE * from users WHERE user_id={};""".format(user_id))
@@ -99,8 +100,8 @@ def new_user():
     user_name = req_data['user_name']
     user_username = req_data['user_username']
     user_password = req_data['user_password']
-    insert_data("""INSERT INTO users (user_name, user_username, user_password) VALUES (%s, %s, %s);""", (user_name, user_username, user_password))
-    return "Success", 200
+    response = insert_data("""INSERT INTO users (user_name, user_username, user_password) VALUES (%s, %s, %s);""", (user_name, user_username, user_password))
+    return response
 
 
 @app.route('/palaces', methods=['GET'])
@@ -111,10 +112,10 @@ def palaces():
 @app.route('/palace/<palace_id>', methods=['GET', 'DELETE'])
 def palace(palace_id):
     if request.method == 'GET':
-        data = get_data("SELECT * from palace WHERE palace_id={};".format(palace_id))
+        data = get_data("""SELECT * from palace WHERE palace_id={};""".format(palace_id))
         return data
     if request.method == 'DELETE':
-        data = get_data("DELETE * from palace WHERE user_id={};".format(palace_id))
+        data = get_data("""DELETE * from palace WHERE user_id={};""".format(palace_id))
         return data
 
 # TODO: Add logic for adding new palace
