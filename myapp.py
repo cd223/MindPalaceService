@@ -1,19 +1,39 @@
 import os
-from flask import Flask, jsonify, send_from_directory, render_template
+import psycopg2
+import urllib.parse as urlparse
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-@app.route('/data')
-def get_data():
-    jsonMessage = {}
-    dataObject = {} 
-    dataObject['height'] = 181
-    dataObject['weight'] = 65
-    dataObject['age'] = 22
-    jsonMessage['message'] = 'Hello World'
-    jsonMessage['data'] = dataObject
-    return jsonify(jsonMessage)
+@app.route('/notes')
+def get_notes():
+    conn = ""
+    out = []
+    try:
+        url = urlparse.urlparse(os.environ['DATABASE_URL'])
+        dbname = url.path[1:]
+        user = url.username
+        password = url.password
+        host = url.hostname
+        port = url.port
+        conn = psycopg2.connect(dbname=dbname, user=user, password=password, host=host, port=port)
+    except:
+        out = {"err": "Unable to connect to the database"}
+        return jsonify(out), 404
+        
+    try:
+        cur = conn.cursor()
+        cur.execute("""SELECT * from notes""")
+        rows = cur.fetchall()
+        out = []
+        for row in rows:
+            out.append({"id": row[0], "name": row[1]})
+    except:
+        out = {"err": "General SQL Error"}
+        return jsonify(out), 404
+
+    return jsonify(out), 200
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, debug=True)
