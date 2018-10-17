@@ -1,7 +1,7 @@
 import os
 import psycopg2
 import urllib.parse as urlparse
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -36,19 +36,37 @@ def get_data(query):
     return jsonify(response), 200
 
 @app.route('/notes', methods=['GET'])
-def get_notes():
+def notes():
     data = get_data("""SELECT * from note""")
     return data
 
+@app.route('/note/<note_id>', methods=['GET', 'POST', 'DELETE'])
+def note(note_id):
+    if request.method == 'GET':
+        data = get_data("""SELECT * from note WHERE note_id=""" + note_id)
+        return data
+
 @app.route('/users', methods=['GET'])
-def get_users():
+def users():
     data = get_data("""SELECT * from users""")
     return data
 
+@app.route('/user/<user_id>', methods=['GET', 'POST', 'DELETE'])
+def user(user_id):
+    if request.method == 'GET':
+        data = get_data("""SELECT * from note WHERE user_id=""" + user_id)
+        return data
+
 @app.route('/palaces', methods=['GET'])
-def get_palaces():
+def palaces():
     data = get_data("""SELECT * from palace""")
     return data
+
+@app.route('/palace/<palace_id>', methods=['GET', 'POST', 'DELETE'])
+def palace(palace_id):
+    if request.method == 'GET':
+        data = get_data("""SELECT * from note WHERE palace_id=""" + palace_id)
+        return data
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
