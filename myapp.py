@@ -58,7 +58,7 @@ def insert_data(query, data):
     response = {"Success": "New value(s) inserted"}
     return jsonify(response), 201
 
-def delete_data(query, data):
+def delete_data(query):
     connection = ""
     try:
         connection = get_db_connection()
