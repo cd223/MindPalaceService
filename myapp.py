@@ -70,14 +70,19 @@ def note(note_id):
         data = get_data("""SELECT * from note WHERE note_id={};""".format(note_id))
         return data
     if request.method == 'DELETE':
-        data = get_data("""DELETE * from note WHERE user_id={};""".format(note_id))
+        data = get_data("""DELETE * from note WHERE note_id={};""".format(note_id))
         return data
 
-# TODO: Add logic for adding new note
 @app.route('/newnote', methods=['POST'])
 def new_note():
     req_data = request.get_json()
-    return req_data, 200
+    palace_id = req_data['palace_id']
+    note_title = req_data['note_title']
+    note_description = req_data['note_description']
+    note_location = req_data['note_location']
+    note_status = req_data['note_status']
+    response = insert_data("""INSERT INTO note (palace_id,note_title,note_description,note_location,note_status) VALUES (%s, %s, %s, %s, %s);""", (palace_id,note_title,note_description,note_location,note_status))
+    return response
 
 
 @app.route('/users', methods=['GET'])
@@ -115,14 +120,17 @@ def palace(palace_id):
         data = get_data("""SELECT * from palace WHERE palace_id={};""".format(palace_id))
         return data
     if request.method == 'DELETE':
-        data = get_data("""DELETE * from palace WHERE user_id={};""".format(palace_id))
+        data = get_data("""DELETE * from palace WHERE palace_id={};""".format(palace_id))
         return data
 
-# TODO: Add logic for adding new palace
 @app.route('/newpalace', methods=['POST'])
 def new_palace():
     req_data = request.get_json()
-    return req_data, 200
+    user_id = req_data['user_id']
+    palace_title = req_data['user_username']
+    palace_description = req_data['user_password']
+    response = insert_data("""INSERT INTO palace (user_id,palace_title,palace_description) VALUES (%s, %s, %s);""", (user_id,palace_title,palace_description))
+    return response
 
 
 if __name__ == "__main__":
