@@ -13,14 +13,14 @@ CREATE TABLE USERS(
 
 CREATE TABLE PALACE(
    palace_id SERIAL PRIMARY KEY,
-   user_id INTEGER REFERENCES USERS (user_id),
+   user_id INTEGER REFERENCES USERS (user_id) ON DELETE CASCADE,
    palace_title VARCHAR(64) NOT NULL,
    palace_description VARCHAR(255) NOT NULL
    );
 
 CREATE TABLE NOTE(
    note_id SERIAL PRIMARY KEY,
-   palace_id INTEGER REFERENCES PALACE (palace_id),
+   palace_id INTEGER REFERENCES PALACE (palace_id) ON DELETE CASCADE,
    note_title VARCHAR(64) NOT NULL,
    note_description VARCHAR(255) NOT NULL,
    note_location VARCHAR(64),
