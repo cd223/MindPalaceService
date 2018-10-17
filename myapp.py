@@ -58,6 +58,27 @@ def insert_data(query, data):
     response = {"Success": "New value(s) inserted"}
     return jsonify(response), 201
 
+def delete_data(query, data):
+    connection = ""
+    try:
+        connection = get_db_connection()
+    except:
+        response = {"Error": "Unable to connect to the database"}
+        return jsonify(response), 404
+    try:
+        cursor = connection.cursor(cursor_factory=RealDictCursor)
+        cursor.execute(query)
+        connection.commit()
+    except:
+        response = {"Error": "General SQL error"}
+        cursor.close()
+        connection.close()
+        return jsonify(response), 404
+    cursor.close()
+    connection.close()
+    response = {"Success": "Value(s) deleted"}
+    return jsonify(response), 200
+
 
 @app.route('/notes', methods=['GET'])
 def notes():

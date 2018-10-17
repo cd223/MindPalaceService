@@ -1,4 +1,3 @@
-// curl -H "Content-Type: application/json" -X POST -d @ExampleNewUser.json https://mindpalaceservice.herokuapp.com/newuser
 {
   "user_name" : "Joe Bloggs",
   "user_username" : "jbloggs999",
