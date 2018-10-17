@@ -54,7 +54,7 @@ def users():
 @app.route('/user/<user_id>', methods=['GET', 'POST', 'DELETE'])
 def user(user_id):
     if request.method == 'GET':
-        data = get_data("""SELECT * from note WHERE user_id=""" + user_id)
+        data = get_data("""SELECT * from users WHERE user_id=""" + user_id)
         return data
 
 @app.route('/palaces', methods=['GET'])
@@ -65,7 +65,7 @@ def palaces():
 @app.route('/palace/<palace_id>', methods=['GET', 'POST', 'DELETE'])
 def palace(palace_id):
     if request.method == 'GET':
-        data = get_data("""SELECT * from note WHERE palace_id=""" + palace_id)
+        data = get_data("""SELECT * from palace WHERE palace_id=""" + palace_id)
         return data
 
 if __name__ == "__main__":
