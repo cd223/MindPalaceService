@@ -127,8 +127,8 @@ def palace(palace_id):
 def new_palace():
     req_data = request.get_json()
     user_id = req_data['user_id']
-    palace_title = req_data['user_username']
-    palace_description = req_data['user_password']
+    palace_title = req_data['palace_title']
+    palace_description = req_data['palace_description']
     response = update_data("""INSERT INTO palace (user_id,palace_title,palace_description) VALUES (%s, %s, %s);""", (user_id,palace_title,palace_description))
     return response
 
