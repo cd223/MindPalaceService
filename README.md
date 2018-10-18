@@ -45,6 +45,33 @@ Service URL: <https://mindpalaceservice.herokuapp.com/>
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https://mindpalaceservice.herokuapp.com/users>
 ```
 
+#### Get existing user details
+
+**Definition**
+
+`GET /user/<user_id:integer>`
+
+**Response**
+
+- `200 OK` on success
+- `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+```json
+[
+  {
+    "user_id": 1, 
+    "user_name": "Chris Davies", 
+    "user_password": "pass", 
+    "user_username": "cjd47"
+  }
+]
+```
+
+**CURL Command**
+```
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https://mindpalaceservice.herokuapp.com/user/1>
+```
+
 #### Add new user
 
 **Definition**
@@ -75,6 +102,20 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https
 curl -H "Content-Type: application/json" -X POST -d @ExampleNewUser.json <https://mindpalaceservice.herokuapp.com/newuser>
 ```
 
+#### Delete a user
+**Definition**
+
+`DELETE /user/1`
+
+**Response**
+
+- `200 OK` on success
+- `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+**CURL Command**
+```
+curl -X "DELETE" <https://mindpalaceservice.herokuapp.com/user/1>
+```
 
 ### PALACES
 #### List all palaces
@@ -116,6 +157,33 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewUser.json <https:
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https://mindpalaceservice.herokuapp.com/palaces>
 ```
 
+#### Get existing palace details
+
+**Definition**
+
+`GET /palace/<palace_id:integer>`
+
+**Response**
+
+- `200 OK` on success
+- `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+```json
+[
+  {
+    "palace_description": "dummy description 1", 
+    "palace_id": 1, 
+    "palace_title": "palace 1", 
+    "user_id": 1
+  }
+]
+```
+
+**CURL Command**
+```
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https://mindpalaceservice.herokuapp.com/palace/1>
+```
+
 #### Add new palace
 
 **Definition**
@@ -146,9 +214,20 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https
 curl -H "Content-Type: application/json" -X POST -d @ExampleNewPalace.json <https://mindpalaceservice.herokuapp.com/newpalace>
 ```
 
+#### Delete a palace
+**Definition**
 
+`DELETE /palace/1`
 
+**Response**
 
+- `200 OK` on success
+- `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+**CURL Command**
+```
+curl -X "DELETE" <https://mindpalaceservice.herokuapp.com/palace/1>
+```
 
 ### NOTES
 #### List all notes
@@ -204,6 +283,35 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewPalace.json <http
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https://mindpalaceservice.herokuapp.com/notes>
 ```
 
+#### Get existing note details
+
+**Definition**
+
+`GET /note/<note_id:integer>`
+
+**Response**
+
+- `200 OK` on success
+- `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+```json
+[
+  {
+    "note_description": "Palace 1 Note 1", 
+    "note_id": 1, 
+    "note_location": "5.3,2.1", 
+    "note_status": false, 
+    "note_title": "P1N1", 
+    "palace_id": 1
+  }
+]
+```
+
+**CURL Command**
+```
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https://mindpalaceservice.herokuapp.com/note/1>
+```
+
 #### Add new note
 
 **Definition**
@@ -238,13 +346,17 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https
 curl -H "Content-Type: application/json" -X POST -d @ExampleNewNote.json <https://mindpalaceservice.herokuapp.com/newnote>
 ```
 
-## DELETE Commands
+#### Delete a note
+**Definition**
+
+`DELETE /note/1`
+
+**Response**
+
+- `200 OK` on success
+- `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+**CURL Command**
 ```
-curl -X "DELETE" <https://mindpalaceservice.herokuapp.com/user/1>
-```
-```
-curl -X "DELETE" <https://mindpalaceservice.herokuapp.com/note/1
-```
-```
-curl -X "DELETE" <https://mindpalaceservice.herokuapp.com/palace/1>
+curl -X "DELETE" <https://mindpalaceservice.herokuapp.com/note/1>
 ```
