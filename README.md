@@ -6,24 +6,24 @@ Service URL: <https://mindpalaceservice.herokuapp.com/>
 ## REST API
 The following endpoints have been implemented 
 
-`GET /users`
-`GET /palaces`
-`GET /notes`
+- `GET /users`
+- `GET /palaces`
+- `GET /notes`
 
-`GET /user/<user_id>`
-`GET /palace/<palace_id>`
-`GET /note/<note_id>`
+- `GET /user/<user_id>`
+- `GET /palace/<palace_id>`
+- `GET /note/<note_id>`
 
-`POST /newuser`
-`POST /newpalace`
-`POST /newnote`
+- `POST /newuser`
+- `POST /newpalace`
+- `POST /newnote`
 
-`DELETE /user/<user_id>`
-`DELETE /palace/<palace_id>`
-`DELETE /note/<note_id>`
+- `DELETE /user/<user_id>`
+- `DELETE /palace/<palace_id>`
+- `DELETE /note/<note_id>`
 
 Still under development:
-`GET /nearestnote/<palace_id>`
+- `GET /nearestnote/<palace_id>`
 
 More detail below:
 
@@ -32,7 +32,7 @@ More detail below:
 
 **Definition**
 
-`GET /users`
+- `GET /users`
 
 **Response**
 
@@ -71,7 +71,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **Definition**
 
-`GET /user/<user_id:integer>`
+- `GET /user/<user_id:integer>`
 
 **Response**
 
@@ -98,7 +98,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **Definition**
 
-`POST /newuser`
+- `POST /newuser`
 
 **Arguments**
 
@@ -127,7 +127,7 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewUser.json https:/
 #### Delete a user
 **Definition**
 
-`DELETE /user/1`
+- `DELETE /user/1`
 
 **Response**
 
@@ -144,7 +144,7 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/user/1
 
 **Definition**
 
-`GET /palaces`
+- `GET /palaces`
 
 **Response**
 
@@ -183,7 +183,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **Definition**
 
-`GET /palace/<palace_id:integer>`
+- `GET /palace/<palace_id:integer>`
 
 **Response**
 
@@ -210,7 +210,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **Definition**
 
-`POST /newpalace`
+- `POST /newpalace`
 
 **Arguments**
 
@@ -239,7 +239,7 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewPalace.json https
 #### Delete a palace
 **Definition**
 
-`DELETE /palace/1`
+- `DELETE /palace/1`
 
 **Response**
 
@@ -256,7 +256,7 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/palace/1
 
 **Definition**
 
-`GET /notes`
+- `GET /notes`
 
 **Response**
 
@@ -309,7 +309,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **Definition**
 
-`GET /note/<note_id:integer>`
+- `GET /note/<note_id:integer>`
 
 **Response**
 
@@ -338,9 +338,9 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **Definition**
 
-`GET /nearestnote/<palace_id:integer>`
+- `GET /nearestnote/<palace_id:integer>`
 
-URL Parameters:
+**URL Parameters**
 - `xpos` the x co-ordinate of the user's current location
 - `ypos` the y co-ordinate of the user's current location
 
@@ -371,7 +371,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **Definition**
 
-`POST /newnote`
+- `POST /newnote`
 
 **Arguments**
 
@@ -404,7 +404,7 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewNote.json https:/
 #### Delete a note
 **Definition**
 
-`DELETE /note/1`
+- `DELETE /note/1`
 
 **Response**
 
