@@ -23,7 +23,7 @@ def get_data(query, data):
         connection = get_db_connection()
     except:
         response = {"Error": "Unable to connect to the database"}
-        return jsonify(response), 404
+        return jsonify(response), 505
     try:
         cursor = connection.cursor(cursor_factory=RealDictCursor)
         cursor.execute(query, data)
@@ -32,7 +32,7 @@ def get_data(query, data):
         response = {"Error": "General SQL error"}
         cursor.close()
         connection.close()
-        return jsonify(response), 404
+        return jsonify(response), 505
     cursor.close()
     connection.close()
     return jsonify(response), 200
@@ -43,7 +43,7 @@ def update_data(query, data):
         connection = get_db_connection()
     except:
         response = {"Error": "Unable to connect to the database"}
-        return jsonify(response), 404
+        return jsonify(response), 505
     try:
         cursor = connection.cursor(cursor_factory=RealDictCursor)
         cursor.execute(query, data)
@@ -52,7 +52,7 @@ def update_data(query, data):
         response = {"Error": "General SQL error"}
         cursor.close()
         connection.close()
-        return jsonify(response), 404
+        return jsonify(response), 505
     cursor.close()
     connection.close()
     response = {"Success": "Database updated"}
