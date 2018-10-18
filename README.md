@@ -42,7 +42,7 @@ Service URL: <https://mindpalaceservice.herokuapp.com/>
 
 **CURL Command**
 ```
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https://mindpalaceservice.herokuapp.com/users>
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/users
 ```
 
 #### Get existing user details
@@ -69,7 +69,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https
 
 **CURL Command**
 ```
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https://mindpalaceservice.herokuapp.com/user/1>
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/user/1
 ```
 
 #### Add new user
@@ -99,7 +99,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https
 
 **CURL Command**
 ```
-curl -H "Content-Type: application/json" -X POST -d @ExampleNewUser.json <https://mindpalaceservice.herokuapp.com/newuser>
+curl -H "Content-Type: application/json" -X POST -d @ExampleNewUser.json https://mindpalaceservice.herokuapp.com/newuser
 ```
 
 #### Delete a user
@@ -114,7 +114,7 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewUser.json <https:
 
 **CURL Command**
 ```
-curl -X "DELETE" <https://mindpalaceservice.herokuapp.com/user/1>
+curl -X "DELETE" https://mindpalaceservice.herokuapp.com/user/1
 ```
 
 ### PALACES
@@ -154,7 +154,7 @@ curl -X "DELETE" <https://mindpalaceservice.herokuapp.com/user/1>
 
 **CURL Command**
 ```
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https://mindpalaceservice.herokuapp.com/palaces>
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/palaces
 ```
 
 #### Get existing palace details
@@ -181,7 +181,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https
 
 **CURL Command**
 ```
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https://mindpalaceservice.herokuapp.com/palace/1>
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/palace/1
 ```
 
 #### Add new palace
@@ -211,7 +211,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https
 
 **CURL Command**
 ```
-curl -H "Content-Type: application/json" -X POST -d @ExampleNewPalace.json <https://mindpalaceservice.herokuapp.com/newpalace>
+curl -H "Content-Type: application/json" -X POST -d @ExampleNewPalace.json https://mindpalaceservice.herokuapp.com/newpalace
 ```
 
 #### Delete a palace
@@ -226,7 +226,7 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewPalace.json <http
 
 **CURL Command**
 ```
-curl -X "DELETE" <https://mindpalaceservice.herokuapp.com/palace/1>
+curl -X "DELETE" https://mindpalaceservice.herokuapp.com/palace/1
 ```
 
 ### NOTES
