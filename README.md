@@ -4,6 +4,28 @@ A RESTful service for CRUD operations on Mind Palace project data.
 Service URL: <https://mindpalaceservice.herokuapp.com/>
 
 ## REST API
+The following endpoints have been implemented 
+
+`GET /users`
+`GET /palaces`
+`GET /notes`
+
+`GET /user/<user_id>`
+`GET /palace/<palace_id>`
+`GET /note/<note_id>`
+
+`POST /newuser`
+`POST /newpalace`
+`POST /newnote`
+
+`DELETE /user/<user_id>`
+`DELETE /palace/<palace_id>`
+`DELETE /note/<note_id>`
+
+Still under development:
+`GET /nearestnote/<palace_id>`
+
+More detail below:
 
 ### USERS
 #### List all users
@@ -310,6 +332,39 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 **CURL Command**
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/note/1
+```
+
+#### Get nearest note details
+
+**Definition**
+
+`GET /nearestnote/<palace_id:integer>`
+
+URL Parameters:
+- `xpos` the x co-ordinate of the user's current location
+- `ypos` the y co-ordinate of the user's current location
+
+**Response**
+
+- `200 OK` on success
+- `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+```json
+[
+  {
+    "note_description": "Palace 1 Note 1", 
+    "note_id": 1, 
+    "note_location": "5.3,2.1", 
+    "note_status": false, 
+    "note_title": "P1N1", 
+    "palace_id": 1
+  }
+]
+```
+
+**CURL Command**
+```
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/nearestnote/1?xpos=3.2&ypos=2.5
 ```
 
 #### Add new note

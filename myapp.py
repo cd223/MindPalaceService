@@ -132,6 +132,18 @@ def new_palace():
     response = update_data("""INSERT INTO palace (user_id,palace_title,palace_description) VALUES (%s, %s, %s);""", (user_id,palace_title,palace_description))
     return response
 
+@app.route('/nearestnote/<palace_id>', methods=['GET'])
+def nearest_note(palace_id):
+    # TODO: Implement logic calculating the single nearest note (for now this endpoint returns all notes under a certain palace_id)
+    args = request.args
+    xpos = args['xpos']
+    ypos = args['ypos']
+    if xpos is None or ypos is None:
+        return {"Error":"Incorrect location format passed in URL"}, 500
+    print("The location co-ordinate passed in was ({},{}).".format(xpos, ypos))
+    data = get_data("""SELECT * from note WHERE palace_id=%s;""", (palace_id))
+    return data
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
