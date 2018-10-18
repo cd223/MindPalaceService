@@ -280,7 +280,7 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/palace/1
 
 **CURL Command**
 ```
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https://mindpalaceservice.herokuapp.com/notes>
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/notes
 ```
 
 #### Get existing note details
@@ -309,7 +309,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https
 
 **CURL Command**
 ```
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https://mindpalaceservice.herokuapp.com/note/1>
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/note/1
 ```
 
 #### Add new note
@@ -343,7 +343,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" <https
 
 **CURL Command**
 ```
-curl -H "Content-Type: application/json" -X POST -d @ExampleNewNote.json <https://mindpalaceservice.herokuapp.com/newnote>
+curl -H "Content-Type: application/json" -X POST -d @ExampleNewNote.json https://mindpalaceservice.herokuapp.com/newnote
 ```
 
 #### Delete a note
@@ -358,5 +358,5 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewNote.json <https:
 
 **CURL Command**
 ```
-curl -X "DELETE" <https://mindpalaceservice.herokuapp.com/note/1>
+curl -X "DELETE" https://mindpalaceservice.herokuapp.com/note/1
 ```
