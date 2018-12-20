@@ -11,6 +11,7 @@ The following endpoints have been implemented
 - `GET /notes`
 
 - `GET /user/<user_id>`
+- `GET /user/<user_username>`
 - `GET /palace/<palace_id>`
 - `GET /note/<note_id>`
 
@@ -19,6 +20,7 @@ The following endpoints have been implemented
 - `POST /newnote`
 
 - `DELETE /user/<user_id>`
+- `DELETE /user/<user_username>`
 - `DELETE /palace/<palace_id>`
 - `DELETE /note/<note_id>`
 
@@ -94,6 +96,31 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/user/1
 ```
 
+**Definition**
+
+- `GET /user/<user_username:string>`
+
+**Response**
+
+- `200 OK` on success
+- `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+```json
+[
+  {
+    "user_id": 1, 
+    "user_name": "Chris Davies", 
+    "user_password": "pass", 
+    "user_username": "cjd47"
+  }
+]
+```
+
+**CURL Command**
+```
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/user/cjd47
+```
+
 #### Add new user
 
 **Definition**
@@ -137,6 +164,20 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewUser.json https:/
 **CURL Command**
 ```
 curl -X "DELETE" https://mindpalaceservice.herokuapp.com/user/1
+```
+
+**Definition**
+
+- `DELETE /user/cjd47`
+
+**Response**
+
+- `200 OK` on success
+- `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+**CURL Command**
+```
+curl -X "DELETE" https://mindpalaceservice.herokuapp.com/user/cjd47
 ```
 
 ### PALACES
