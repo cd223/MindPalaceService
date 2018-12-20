@@ -18,6 +18,7 @@ The following endpoints have been implemented
 - `POST /newuser`
 - `POST /newpalace`
 - `POST /newnote`
+- `POST /updatenotestatus/<note_id>`
 
 - `DELETE /user/<user_id>`
 - `DELETE /userbyusername/<user_username>`
@@ -440,6 +441,25 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 **CURL Command**
 ```
 curl -H "Content-Type: application/json" -X POST -d @ExampleNewNote.json https://mindpalaceservice.herokuapp.com/newnote
+```
+
+#### Update note status
+
+**Definition**
+
+- `POST /updatenotestatus/1`
+
+**URL Parameters**
+- `status` the new status for the current note
+
+**Response**
+
+- `200 OK` on success
+- `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+**CURL Command**
+```
+curl -H "Content-Type: application/json" -X POST https://mindpalaceservice.herokuapp.com/updatenotestatus/1?status=true
 ```
 
 #### Delete a note

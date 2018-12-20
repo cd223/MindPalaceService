@@ -86,6 +86,13 @@ def new_note():
     response = update_data("""INSERT INTO note (palace_id,note_title,note_description,note_location_x,note_location_y,note_status) VALUES (%s, %s, %s, %s, %s);""", (palace_id,note_title,note_description,note_location_x,note_location_y,note_status))
     return response
 
+@app.route('/updatenotestatus/<note_id>', methods=['POST'])
+def update_note_status(note_id):
+    args = request.args
+    note_status = args['status']
+    status = True if (note_status == "true") else False
+    response = update_data("""UPDATE note SET note_status=%s WHERE note_id=%s;""", (AsIs(status), note_id))
+    return response
 
 @app.route('/users', methods=['GET'])
 def users():
