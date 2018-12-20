@@ -79,9 +79,10 @@ def new_note():
     palace_id = req_data['palace_id']
     note_title = req_data['note_title']
     note_description = req_data['note_description']
-    note_location = req_data['note_location']
+    note_location_x = req_data['note_location_x']
+    note_location_y = req_data['note_location_y']
     note_status = req_data['note_status']
-    response = update_data("""INSERT INTO note (palace_id,note_title,note_description,note_location,note_status) VALUES (%s, %s, %s, %s, %s);""", (palace_id,note_title,note_description,note_location,note_status))
+    response = update_data("""INSERT INTO note (palace_id,note_title,note_description,note_location_x,note_location_y,note_status) VALUES (%s, %s, %s, %s, %s);""", (palace_id,note_title,note_description,note_location_x,note_location_y,note_status))
     return response
 
 
@@ -138,9 +139,9 @@ def nearest_note(palace_id):
     args = request.args
     xpos = args['xpos']
     ypos = args['ypos']
-    if xpos is None or ypos is None:
+    radius = args['rad']
+    if xpos is None or ypos is None or radius is None:
         return {"Error":"Incorrect location format passed in URL"}, 500
-    print("The location co-ordinate passed in was ({},{}).".format(xpos, ypos))
     data = get_data("""SELECT * from note WHERE palace_id=%s;""", (palace_id))
     return data
 

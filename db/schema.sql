@@ -23,7 +23,8 @@ CREATE TABLE NOTE(
    palace_id INTEGER REFERENCES PALACE (palace_id) ON DELETE CASCADE,
    note_title VARCHAR(64) NOT NULL,
    note_description VARCHAR(255) NOT NULL,
-   note_location VARCHAR(64),
+   note_location_x VARCHAR(32),
+   note_location_y VARCHAR(32),
    note_status BOOLEAN NOT NULL DEFAULT FALSE
    );
 
@@ -38,10 +39,10 @@ INSERT INTO PALACE(user_id,palace_title,palace_description) VALUES
 ('2','palace 2','dummy description 2'),
 ('3','palace 3','dummy description 3');
 
-INSERT INTO NOTE(palace_id,note_title,note_description,note_location,note_status) VALUES
-('1', 'P1N1', 'Palace 1 Note 1', '5.3,2.1',FALSE),
-('1', 'P1N2', 'Palace 1 Note 2', '1.7,8.4',TRUE),
-('2', 'P2N1', 'Palace 2 Note 1', '6.1,9.0',FALSE),
-('2', 'P2N2', 'Palace 2 Note 2', '4.5,6.3',TRUE),
-('3', 'P3N1', 'Palace 3 Note 1', '4.4,3.3',FALSE),
-('3', 'P3N2', 'Palace 3 Note 2', '0.9,8.9',TRUE);
+INSERT INTO NOTE(palace_id,note_title,note_description,note_location_x,note_location_y,note_status) VALUES
+('1', 'P1N1', 'Palace 1 Note 1', '5.33','2.11',FALSE),
+('1', 'P1N2', 'Palace 1 Note 2', '1.7','8.4',TRUE),
+('2', 'P2N1', 'Palace 2 Note 1', '6.1','9.0',FALSE),
+('2', 'P2N2', 'Palace 2 Note 2', '4.5','6.3',TRUE),
+('3', 'P3N1', 'Palace 3 Note 1', '4.4','3.3',FALSE),
+('3', 'P3N2', 'Palace 3 Note 2', '0.9','8.9',TRUE);
