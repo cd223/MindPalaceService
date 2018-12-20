@@ -100,7 +100,7 @@ def user(user_id):
         data = update_data("""DELETE from users WHERE user_id=%s;""", (user_id))
         return data
 
-@app.route('/user/<user_username>', methods=['GET', 'DELETE'])
+@app.route('/userbyusername/<user_username>', methods=['GET', 'DELETE'])
 def user_by_username(user_username):
     if request.method == 'GET':
         data = get_data("""SELECT * from users WHERE user_username=%s;""", (user_username))
