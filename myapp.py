@@ -103,10 +103,10 @@ def user(user_id):
 @app.route('/userbyusername/<user_username>', methods=['GET', 'DELETE'])
 def user_by_username(user_username):
     if request.method == 'GET':
-        data = get_data("""SELECT * from users WHERE user_username=%s;""", (user_username))
+        data = get_data("""SELECT * from users WHERE user_username='%s';""", (user_username))
         return data
     if request.method == 'DELETE':
-        data = update_data("""DELETE from users WHERE user_username=%s;""", (user_username))
+        data = update_data("""DELETE from users WHERE user_username='%s';""", (user_username))
         return data
 
 @app.route('/newuser', methods=['POST'])

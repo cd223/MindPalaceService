@@ -11,7 +11,7 @@ The following endpoints have been implemented
 - `GET /notes`
 
 - `GET /user/<user_id>`
-- `GET /user/<user_username>`
+- `GET /userbyusername/<user_username>`
 - `GET /palace/<palace_id>`
 - `GET /note/<note_id>`
 
@@ -20,7 +20,7 @@ The following endpoints have been implemented
 - `POST /newnote`
 
 - `DELETE /user/<user_id>`
-- `DELETE /user/<user_username>`
+- `DELETE /userbyusername/<user_username>`
 - `DELETE /palace/<palace_id>`
 - `DELETE /note/<note_id>`
 
@@ -98,7 +98,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **Definition**
 
-- `GET /user/<user_username:string>`
+- `GET /userbyusername/<user_username:string>`
 
 **Response**
 
@@ -118,7 +118,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **CURL Command**
 ```
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/user/cjd47
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/userbyusername/cjd47
 ```
 
 #### Add new user
@@ -168,7 +168,7 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/user/1
 
 **Definition**
 
-- `DELETE /user/cjd47`
+- `DELETE /userbyusername/cjd47`
 
 **Response**
 
@@ -177,7 +177,7 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/user/1
 
 **CURL Command**
 ```
-curl -X "DELETE" https://mindpalaceservice.herokuapp.com/user/cjd47
+curl -X "DELETE" https://mindpalaceservice.herokuapp.com/userbyusername/cjd47
 ```
 
 ### PALACES
