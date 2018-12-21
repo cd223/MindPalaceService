@@ -159,6 +159,13 @@ def new_palace():
     response = update_data("""INSERT INTO palace (user_id,palace_title,palace_description) VALUES (%s, %s, %s);""", (user_id,palace_title,palace_description))
     return response
 
+@app.route('/unrememberednotes', methods=['GET'])
+def unremembered_notes():
+    args = request.args
+    title = args['ptitle']
+    data = get_data("""SELECT * from note WHERE note_status=false AND palace_id=(SELECT palace_id from palace WHERE palace_title='%s');""", (AsIs(title),), True)
+    return data
+
 @app.route('/nearestnote/<palace_id>', methods=['GET'])
 def nearest_note(palace_id):
     args = request.args
