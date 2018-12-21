@@ -275,7 +275,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **CURL Command**
 ```
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/palacesbyuser?username=cjd47
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/palacesbyuser?user=cjd47
 ```
 
 #### Add new palace
