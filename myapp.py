@@ -180,7 +180,7 @@ def nearest_note(palace_id):
     if within_rad:
         print("Within radius!")
         print(closest_loc)
-        data = get_data("""SELECT * from note WHERE palace_id=%s AND note_location_x='%s' AND note_location_y='%s';""", (palace_id, AsIs(xpos), AsIs(ypos)), True)
+        data = get_data("""SELECT * from note WHERE palace_id=%s AND note_location_x='%s' AND note_location_y='%s';""", (palace_id, AsIs(closest_loc[0]), AsIs(closest_loc[1])), True)
         return data
     else:
         print("Not within radius!")
