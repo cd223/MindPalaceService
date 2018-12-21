@@ -14,6 +14,7 @@ The following endpoints have been implemented
 - `GET /userbyusername/<user_username>`
 - `GET /palace/<palace_id>`
 - `GET /note/<note_id>`
+- `GET /nearestnote/<palace_id>`
 
 - `POST /newuser`
 - `POST /newpalace`
@@ -24,9 +25,6 @@ The following endpoints have been implemented
 - `DELETE /userbyusername/<user_username>`
 - `DELETE /palace/<palace_id>`
 - `DELETE /note/<note_id>`
-
-Still under development:
-- `GET /nearestnote/<palace_id>`
 
 More detail below:
 
@@ -385,6 +383,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 **URL Parameters**
 - `xpos` the x co-ordinate of the user's current location
 - `ypos` the y co-ordinate of the user's current location
+- `rad` the chosen senitivity radius
 
 **Response**
 
@@ -406,7 +405,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **CURL Command**
 ```
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/nearestnote/1?xpos=3.2&ypos=2.5
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/nearestnote/1?xpos=8.22334567&ypos=1.456566754&rad=2.99
 ```
 
 #### Add new note
