@@ -168,7 +168,7 @@ def nearest_note(palace_id):
     if xpos is None or ypos is None or radius is None:
         return {"Error":"Incorrect location format passed in URL"}, 500
     data = get_data("""SELECT note_location_x, note_location_y from note WHERE palace_id=%s;""", (palace_id), False)
-    return data
+    return jsonify(data), 200
 
 
 if __name__ == "__main__":
