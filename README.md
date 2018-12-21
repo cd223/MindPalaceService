@@ -13,9 +13,10 @@ The following endpoints have been implemented
 - `GET /user/<user_id>`
 - `GET /userbyusername/<user_username>`
 - `GET /palace/<palace_id>`
+- `GET /palacesbyuser`
 - `GET /note/<note_id>`
 - `GET /nearestnote/<palace_id>`
-- `GET /unrememberednotes/<palace_title>`
+- `GET /unrememberednotes`
 
 - `POST /newuser`
 - `POST /newpalace`
@@ -247,6 +248,36 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/palace/1
 ```
 
+#### Get palaces for a given user
+
+**Definition**
+
+- `GET /palacesbyuser`
+
+**URL Parameters**
+- `username` the username of the user we are interested in
+
+**Response**
+
+- `200 OK` on success
+- `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+```json
+[
+  {
+    "palace_description": "dummy description 1", 
+    "palace_id": 1, 
+    "palace_title": "palace 1", 
+    "user_id": 1
+  }
+]
+```
+
+**CURL Command**
+```
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/palacesbyuser?username=cjd47
+```
+
 #### Add new palace
 
 **Definition**
@@ -438,7 +469,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **CURL Command**
 ```
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/nearestnote/1?xpos=8.22334567&ypos=1.456566754&rad=2.99
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/unrememberednotes?ptitle=palace%201
 ```
 
 

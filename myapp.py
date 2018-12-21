@@ -141,6 +141,13 @@ def palaces():
     data = get_data("""SELECT * from palace""", (None), True)
     return data
 
+@app.route('/palacesbyuser', methods=['GET'])
+def palacesbyuser():
+    args = request.args
+    username = args['username']
+    data = get_data("""SELECT * from palace WHERE user_id=(SELECT user_id from users WHERE user_username='%s');""", (AsIs(username)), True)
+    return data
+
 @app.route('/palace/<palace_id>', methods=['GET', 'DELETE'])
 def palace(palace_id):
     if request.method == 'GET':
@@ -185,12 +192,9 @@ def nearest_note(palace_id):
     within_rad = pow(closest_loc[0] - cur_loc[0],2) + pow(closest_loc[1] - cur_loc[1],2) <= pow(radius,2)
 
     if within_rad:
-        print("Within radius!")
-        print(closest_loc)
         data = get_data("""SELECT * from note WHERE palace_id=%s AND note_location_x='%s' AND note_location_y='%s';""", (palace_id, AsIs(closest_loc[0]), AsIs(closest_loc[1])), True)
         return data
     else:
-        print("Not within radius!")
         response = {"Error": "No notes within radius!"}
         return jsonify(response), 505
 
