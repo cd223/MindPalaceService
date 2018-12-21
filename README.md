@@ -17,6 +17,7 @@ The following endpoints have been implemented
 - `GET /note/<note_id>`
 - `GET /nearestnote/<palace_id>`
 - `GET /unrememberednotes`
+- `GET /progress`
 
 - `POST /newuser`
 - `POST /newpalace`
@@ -463,6 +464,34 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
     "note_status": false, 
     "note_title": "P1N1", 
     "palace_id": 1
+  }
+]
+```
+
+**CURL Command**
+```
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/unrememberednotes?ptitle=palace%201
+```
+
+#### Get number of remembered notes and total notes in a given palace
+
+**Definition**
+
+- `GET /progress`
+
+**URL Parameters**
+- `ptitle` the title of the palace we are interested in
+
+**Response**
+
+- `200 OK` on success
+- `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+```json
+[
+  {
+    "remembered": 1, 
+    "total": 2
   }
 ]
 ```
