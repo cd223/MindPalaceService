@@ -5,8 +5,13 @@ import urllib.parse as urlparse
 from flask import Flask, jsonify, request
 from psycopg2.extras import RealDictCursor
 from psycopg2.extensions import AsIs
+from numpy import random
+from scipy.spatial.distance import cdist
 
 app = Flask(__name__)
+
+def closest_point(point, points):
+    return points[cdist([point], points).argmin()]
 
 def get_db_connection():
     url = urlparse.urlparse(os.environ['DATABASE_URL'])
@@ -18,7 +23,7 @@ def get_db_connection():
     connection = psycopg2.connect(dbname=dbname, user=user, password=password, host=host, port=port)
     return connection
 
-def get_data(query, data):
+def get_data(query, data, toJson):
     connection = ""
     try:
         connection = get_db_connection()
@@ -36,7 +41,10 @@ def get_data(query, data):
         return jsonify(response), 505
     cursor.close()
     connection.close()
-    return jsonify(response), 200
+    if toJson:
+        return jsonify(response), 200
+    else:
+        return response
 
 def update_data(query, data):
     connection = ""
@@ -62,13 +70,13 @@ def update_data(query, data):
 
 @app.route('/notes', methods=['GET'])
 def notes():
-    data = get_data("""SELECT * from note;""", (None))
+    data = get_data("""SELECT * from note;""", (None), True)
     return data
 
 @app.route('/note/<note_id>', methods=['GET', 'DELETE'])
 def note(note_id):
     if request.method == 'GET':
-        data = get_data("""SELECT * from note WHERE note_id=%s;""", (note_id))
+        data = get_data("""SELECT * from note WHERE note_id=%s;""", (note_id), True)
         return data
     if request.method == 'DELETE':
         data = update_data("""DELETE from note WHERE note_id=%s;""", (note_id))
@@ -96,13 +104,13 @@ def update_note_status(note_id):
 
 @app.route('/users', methods=['GET'])
 def users():
-    data = get_data("""SELECT * from users;""", (None))
+    data = get_data("""SELECT * from users;""", (None), True)
     return data
 
 @app.route('/user/<user_id>', methods=['GET', 'DELETE'])
 def user(user_id):
     if request.method == 'GET':
-        data = get_data("""SELECT * from users WHERE user_id=%s;""", (user_id))
+        data = get_data("""SELECT * from users WHERE user_id=%s;""", (user_id), True)
         return data
     if request.method == 'DELETE':
         data = update_data("""DELETE from users WHERE user_id=%s;""", (user_id))
@@ -111,7 +119,7 @@ def user(user_id):
 @app.route('/userbyusername/<user_username>', methods=['GET', 'DELETE'])
 def user_by_username(user_username):
     if request.method == 'GET':
-        data = get_data("""SELECT * from users WHERE user_username='%s';""", (AsIs(user_username),))
+        data = get_data("""SELECT * from users WHERE user_username='%s';""", (AsIs(user_username),), True)
         return data
     if request.method == 'DELETE':
         data = update_data("""DELETE from users WHERE user_username='%s';""", (AsIs(user_username),))
@@ -129,13 +137,13 @@ def new_user():
 
 @app.route('/palaces', methods=['GET'])
 def palaces():
-    data = get_data("""SELECT * from palace""", (None))
+    data = get_data("""SELECT * from palace""", (None), True)
     return data
 
 @app.route('/palace/<palace_id>', methods=['GET', 'DELETE'])
 def palace(palace_id):
     if request.method == 'GET':
-        data = get_data("""SELECT * from palace WHERE palace_id=%s;""", (palace_id))
+        data = get_data("""SELECT * from palace WHERE palace_id=%s;""", (palace_id), True)
         return data
     if request.method == 'DELETE':
         data = update_data("""DELETE FROM palace WHERE palace_id = %s;""", (palace_id))
@@ -159,7 +167,7 @@ def nearest_note(palace_id):
     radius = args['rad']
     if xpos is None or ypos is None or radius is None:
         return {"Error":"Incorrect location format passed in URL"}, 500
-    data = get_data("""SELECT * from note WHERE palace_id=%s;""", (palace_id))
+    data = get_data("""SELECT note_location_x, note_location_y from note WHERE palace_id=%s;""", (palace_id), False)
     return data
 
 
