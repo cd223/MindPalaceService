@@ -167,8 +167,17 @@ def nearest_note(palace_id):
     radius = args['rad']
     if xpos is None or ypos is None or radius is None:
         return {"Error":"Incorrect location format passed in URL"}, 500
-    data = get_data("""SELECT note_location_x, note_location_y from note WHERE palace_id=%s;""", (palace_id), False)
-    return jsonify(data), 200
+    all_locs = get_data("""SELECT note_location_x, note_location_y from note WHERE palace_id=%s;""", (palace_id), False)
+    cur_loc = (xpos, ypos)
+    closest_loc = closest_point(cur_loc, all_locs)
+    rad = 2.0000
+    within_rad = pow(closest_loc[0] - cur_loc[0],2) + pow(closest_loc[1] - cur_loc[1],2) < pow(rad,2)
+    if within_rad:
+        print("Within radius!")
+        print(closest_loc)
+    else:
+        print("Not within radius!")
+    return jsonify(all_locs), 200
 
 
 if __name__ == "__main__":
