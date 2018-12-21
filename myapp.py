@@ -161,27 +161,31 @@ def new_palace():
 
 @app.route('/nearestnote/<palace_id>', methods=['GET'])
 def nearest_note(palace_id):
-    # TODO: Implement logic calculating the single nearest note (for now this endpoint returns all notes under a certain palace_id)
     args = request.args
-    xpos = args['xpos']
-    ypos = args['ypos']
-    radius = args['rad']
+    xpos = float(args['xpos'])
+    ypos = float(args['ypos'])
+    radius = float(args['rad'])
     if xpos is None or ypos is None or radius is None:
         return {"Error":"Incorrect location format passed in URL"}, 500
+
     data = get_data("""SELECT note_location_x, note_location_y from note WHERE palace_id=%s;""", (palace_id), False)
-    print(data)
-    all_locs = np.reshape(data, (-1, 2))
+    all_locs = []
+    for elem in data:
+        all_locs.append((float(elem['note_location_x']), float(elem['note_location_y'])))
+
     cur_loc = (xpos, ypos)
     closest_loc = closest_point(cur_loc, all_locs)
-    rad = 2.0000
-    within_rad = pow(closest_loc[0] - cur_loc[0],2) + pow(closest_loc[1] - cur_loc[1],2) < pow(rad,2)
+    within_rad = pow(closest_loc[0] - cur_loc[0],2) + pow(closest_loc[1] - cur_loc[1],2) <= pow(radius,2)
+
     if within_rad:
         print("Within radius!")
         print(closest_loc)
+        data = get_data("""SELECT * from note WHERE palace_id=%s AND note_location_x='%s' AND note_location_y='%s';""", (palace_id, AsIs(xpos), AsIs(ypos)), True)
+        return data
     else:
         print("Not within radius!")
-    return jsonify(all_locs), 200
-
+        response = {"Error": "No notes within radius!"}
+        return jsonify(response), 505
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
