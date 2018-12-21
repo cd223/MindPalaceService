@@ -178,6 +178,7 @@ def progress():
     args = request.args
     title = args['ptitle']
     all_notes = get_data("""SELECT COUNT(note_id) from note WHERE palace_id=(SELECT palace_id from palace WHERE palace_title='%s');""", (AsIs(title),), True)
+    print(all_notes)
     total = []
     for elem in all_notes:
         total.append(int(elem['count']))
