@@ -178,9 +178,15 @@ def progress():
     args = request.args
     title = args['ptitle']
     all_notes = get_data("""SELECT COUNT(note_id) from note WHERE palace_id=(SELECT palace_id from palace WHERE palace_title='%s');""", (AsIs(title),), True)
+    total = []
+    for elem in all_notes:
+        total.append(int(elem['count']))
+
     remembered_notes = get_data("""SELECT COUNT(note_id) from note WHERE note_status=true AND palace_id=(SELECT palace_id from palace WHERE palace_title='%s');""", (AsIs(title),), True)
-    total = all_notes[0]['count']
-    remembered = remembered_notes[0]['count']
+    remembered = []
+    for elem in remembered_notes:
+        remembered.append(int(elem['count']))
+
     response = [{"remembered", remembered},{"total", total}]
     return jsonify(response)
 
