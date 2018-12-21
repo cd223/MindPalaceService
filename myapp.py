@@ -5,6 +5,7 @@ import urllib.parse as urlparse
 from flask import Flask, jsonify, request
 from psycopg2.extras import RealDictCursor
 from psycopg2.extensions import AsIs
+import numpy as np
 from numpy import random
 from scipy.spatial.distance import cdist
 
@@ -167,7 +168,8 @@ def nearest_note(palace_id):
     radius = args['rad']
     if xpos is None or ypos is None or radius is None:
         return {"Error":"Incorrect location format passed in URL"}, 500
-    all_locs = get_data("""SELECT note_location_x, note_location_y from note WHERE palace_id=%s;""", (palace_id), False)
+    data = get_data("""SELECT note_location_x, note_location_y from note WHERE palace_id=%s;""", (palace_id), False)
+    all_locs = np.reshape(data, (-1, 2))
     cur_loc = (xpos, ypos)
     closest_loc = closest_point(cur_loc, all_locs)
     rad = 2.0000
