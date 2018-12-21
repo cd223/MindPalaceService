@@ -169,6 +169,7 @@ def nearest_note(palace_id):
     if xpos is None or ypos is None or radius is None:
         return {"Error":"Incorrect location format passed in URL"}, 500
     data = get_data("""SELECT note_location_x, note_location_y from note WHERE palace_id=%s;""", (palace_id), False)
+    print(data)
     all_locs = np.reshape(data, (-1, 2))
     cur_loc = (xpos, ypos)
     closest_loc = closest_point(cur_loc, all_locs)
