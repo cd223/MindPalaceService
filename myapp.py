@@ -145,7 +145,7 @@ def palaces():
 def palacesbyuser():
     args = request.args
     username = args['user']
-    data = get_data("""SELECT * from palace WHERE user_id=(SELECT user_id from users WHERE user_username='%s');""", (username), True)
+    data = get_data("""SELECT * from palace WHERE user_id=(SELECT user_id from users WHERE user_username='%s');""", (AsIs(username),), True)
     return data
 
 @app.route('/palace/<palace_id>', methods=['GET', 'DELETE'])
