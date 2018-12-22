@@ -160,10 +160,14 @@ def palace(palace_id):
 @app.route('/newpalace', methods=['POST'])
 def new_palace():
     req_data = request.get_json()
-    user_id = req_data['user_id']
+    user_username = req_data['user_username']
     palace_title = req_data['palace_title']
     palace_description = req_data['palace_description']
-    response = update_data("""INSERT INTO palace (user_id,palace_title,palace_description) VALUES (%s, %s, %s);""", (user_id,palace_title,palace_description))
+    data = get_data("""SELECT user_id from users WHERE user_username='%s';""", (AsIs(user_username),), False)
+    user_id = []
+    for elem in data:
+        user_id.append(int(elem['user_id']))
+    response = update_data("""INSERT INTO palace (user_id,palace_title,palace_description) VALUES (%s, %s, %s);""", (user_id[0],palace_title,palace_description))
     return response
 
 @app.route('/unrememberednotes', methods=['GET'])

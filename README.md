@@ -287,13 +287,13 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **Arguments**
 
-- `"user_id":string` id of the user the palace is to be registered with
+- `"user_username":string` username of the user the palace is to be registered with
 - `"palace_title":string` a friendly title for the palace
 - `"palace_description":string` a description of what the palace is for
 
 ```json
 {
-  "user_id" : "2",
+  "user_username" : "cjd47",
   "palace_title" : "Test Palace",
   "palace_description" : "Palace added by example JSON"
 }
