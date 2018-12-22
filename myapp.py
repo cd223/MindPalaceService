@@ -186,7 +186,9 @@ def progress():
     remembered = []
     for elem in remembered_notes:
         remembered.append(int(elem['count']))
-    response = [{"remembered", remembered},{"total", total}]
+    response = {}
+    response['remembered'] = remembered
+    response['total'] = total
     return jsonify(response)
 
 @app.route('/nearestnote/<palace_id>', methods=['GET'])
