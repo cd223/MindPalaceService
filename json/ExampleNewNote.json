@@ -1,5 +1,5 @@
 {
-  "palace_id" : "1",
+  "palace_id" : 1,
   "note_title" : "Test Note",
   "note_description" : "Note added by example JSON",
   "note_location_x" : "10.0",
