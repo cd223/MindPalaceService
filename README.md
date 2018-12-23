@@ -341,7 +341,8 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/palace/1
   {
     "note_description": "Palace 1 Note 1", 
     "note_id": 1, 
-    "note_location": "5.3,2.1", 
+    "note_location_x": "5.3",
+    "note_location_y": "2.1", 
     "note_status": false, 
     "note_title": "P1N1", 
     "palace_id": 1
@@ -349,7 +350,8 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/palace/1
   {
     "note_description": "Palace 1 Note 2", 
     "note_id": 2, 
-    "note_location": "1.7,8.4", 
+    "note_location_x": "1.7",
+    "note_location_y": "8.4", 
     "note_status": true, 
     "note_title": "P1N2", 
     "palace_id": 1
@@ -357,7 +359,8 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/palace/1
   {
     "note_description": "Palace 2 Note 2", 
     "note_id": 4, 
-    "note_location": "4.5,6.3", 
+    "note_location_x": "4.5",
+    "note_location_y": "6.3", 
     "note_status": true, 
     "note_title": "P2N2", 
     "palace_id": 2
@@ -365,7 +368,8 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/palace/1
   {
     "note_description": "Palace 3 Note 1", 
     "note_id": 5, 
-    "note_location": "4.4,3.3", 
+    "note_location_x": "4.4",
+    "note_location_y": "3.3", 
     "note_status": false, 
     "note_title": "P3N1", 
     "palace_id": 3
@@ -394,7 +398,8 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
   {
     "note_description": "Palace 1 Note 1", 
     "note_id": 1, 
-    "note_location": "5.3,2.1", 
+    "note_location_x": "5.3",
+    "note_location_y": "2.1", 
     "note_status": false, 
     "note_title": "P1N1", 
     "palace_id": 1
@@ -428,7 +433,8 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
   {
     "note_description": "Palace 1 Note 1", 
     "note_id": 1, 
-    "note_location": "5.3,2.1", 
+    "note_location_x": "5.3",
+    "note_location_y": "2.1", 
     "note_status": false, 
     "note_title": "P1N1", 
     "palace_id": 1
@@ -460,7 +466,8 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
   {
     "note_description": "Palace 1 Note 1", 
     "note_id": 1, 
-    "note_location": "5.3,2.1", 
+    "note_location_x": "5.3",
+    "note_location_y": "2.1", 
     "note_status": false, 
     "note_title": "P1N1", 
     "palace_id": 1
@@ -514,7 +521,8 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 - `palace_id:string` id of the palace the note is to be registered with
 - `note_title:string` a friendly title for the note
 - `note_description:string` a description of what the note is
-- `note_location:string` a string representing the location of the note in the room
+- `note_location_x:string` a string representing the x location of the note in the room
+- `note_location_y:string` a string representing the y location of the note in the room
 - `note_status:boolean` a status over whether the note has been remembered
 
 ```json
@@ -522,7 +530,8 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
   "palace_id" : "1",
   "note_title" : "Test Note",
   "note_description" : "Note added by example JSON",
-  "note_location" : "10.0,7.3",
+  "note_location_x": "10.0",
+  "note_location_y": "7.3", 
   "note_status" : false
 }
 ```
