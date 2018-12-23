@@ -217,8 +217,8 @@ def nearest_note(palace_id):
         data = get_data("""SELECT * from note WHERE palace_id=%s AND note_location_x='%s' AND note_location_y='%s';""", (palace_id, AsIs(closest_loc[0]), AsIs(closest_loc[1])), True)
         return data
     else:
-        response = {"Error": "No notes within radius!"}
-        return jsonify(response), 505
+        response = [{"Message": "No notes within radius!"}]
+        return json.dumps(response), 200
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
