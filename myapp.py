@@ -92,7 +92,7 @@ def new_note():
     note_location_x = req_data['note_location_x']
     note_location_y = req_data['note_location_y']
     note_status = req_data['note_status']
-    response = update_data("""INSERT INTO note (palace_id,note_title,note_description,note_location_x,note_location_y,note_status) VALUES (%s, %s, %s, %s, %s);""", (palace_id,note_title,note_description,note_location_x,note_location_y,note_status))
+    response = update_data("""INSERT INTO note (palace_id,note_title,note_description,note_location_x,note_location_y,note_status) VALUES (%s, %s, %s, %s, %s, %s);""", (palace_id,note_title,note_description,note_location_x,note_location_y,note_status))
     return response
 
 @app.route('/updatenotestatus/<note_id>', methods=['POST'])
