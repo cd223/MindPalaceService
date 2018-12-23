@@ -86,7 +86,7 @@ def note(note_id):
 @app.route('/newnote', methods=['POST'])
 def new_note():
     req_data = request.get_json()
-    palace_id = req_data['palace_id']
+    palace_id = int(req_data['palace_id'])
     note_title = req_data['note_title']
     note_description = req_data['note_description']
     note_location_x = req_data['note_location_x']
