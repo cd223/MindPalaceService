@@ -218,7 +218,7 @@ def nearest_note(palace_id):
         return data
     else:
         response = [{"Message": "No notes within radius!"}]
-        return jsonify(json.dumps(response)), 200
+        return json.dumps(response), 200
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
