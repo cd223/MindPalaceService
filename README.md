@@ -1,7 +1,8 @@
-# Mind Palace Service
-A RESTful service for CRUD operations on Mind Palace project data.
-
-Service URL: <https://mindpalaceservice.herokuapp.com/>
+# "Hold That Thought" (HTT)
+- Motion-based Mind Palace generation for memorisation assistance - a BSc Computer Science dissertation (2018-19)
+- Demo: https://youtu.be/_eUD6Mm_8RA
+- A RESTful service for CRUD operations on Mind Palace project data.
+- Service URL: <https://mindpalaceservice.herokuapp.com/>
 
 ## REST API
 The following endpoints have been implemented 
