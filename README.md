@@ -475,6 +475,16 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 ]
 ```
 
+or
+
+```json
+[
+  {
+    "Message": "No notes within radius!"
+  }
+]
+```
+
 **CURL Command**
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/nearestnote/1?xpos=8.22334567&ypos=1.456566754&rad=2.99
