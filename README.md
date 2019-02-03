@@ -4,7 +4,7 @@
 - A RESTful service for CRUD operations on Mind Palace project data.
 - Service URL: <https://mindpalaceservice.herokuapp.com/>
 
-![HTT Logo](doc/img/logo.png?raw=true "Hold That Thought")
+![HTT Logo](img/logo.png?raw=true "Hold That Thought")
 
 ## REST API
 The following endpoints have been implemented 
