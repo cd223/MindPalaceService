@@ -4,6 +4,8 @@
 - A RESTful service for CRUD operations on Mind Palace project data.
 - Service URL: <https://mindpalaceservice.herokuapp.com/>
 
+![HTT Logo](doc/img/logo.png?raw=true "Hold That Thought")
+
 ## REST API
 The following endpoints have been implemented 
 
@@ -149,6 +151,12 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
 
+```json
+{
+  "Success": "Database updated"
+}
+```
+
 **CURL Command**
 ```
 curl -H "Content-Type: application/json" -X POST -d @ExampleNewUser.json https://mindpalaceservice.herokuapp.com/newuser
@@ -164,6 +172,12 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewUser.json https:/
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
 
+```json
+{
+  "Success": "Database updated"
+}
+```
+
 **CURL Command**
 ```
 curl -X "DELETE" https://mindpalaceservice.herokuapp.com/user/1
@@ -177,6 +191,12 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/user/1
 
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+```json
+{
+  "Success": "Database updated"
+}
+```
 
 **CURL Command**
 ```
@@ -305,6 +325,12 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
 
+```json
+{
+  "Success": "Database updated"
+}
+```
+
 **CURL Command**
 ```
 curl -H "Content-Type: application/json" -X POST -d @ExampleNewPalace.json https://mindpalaceservice.herokuapp.com/newpalace
@@ -319,6 +345,12 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewPalace.json https
 
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+```json
+{
+  "Success": "Database updated"
+}
+```
 
 **CURL Command**
 ```
@@ -509,8 +541,6 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/unrememberednotes?ptitle=palace%201
 ```
 
-
-
 #### Add new note
 
 **Definition**
@@ -542,6 +572,12 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
 
+```json
+{
+  "Success": "Database updated"
+}
+```
+
 **CURL Command**
 ```
 curl -H "Content-Type: application/json" -X POST -d @ExampleNewNote.json https://mindpalaceservice.herokuapp.com/newnote
@@ -561,6 +597,12 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewNote.json https:/
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
 
+```json
+{
+  "Success": "Database updated"
+}
+```
+
 **CURL Command**
 ```
 curl -H "Content-Type: application/json" -X POST https://mindpalaceservice.herokuapp.com/updatenotestatus/1?status=true
@@ -575,6 +617,12 @@ curl -H "Content-Type: application/json" -X POST https://mindpalaceservice.herok
 
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+```json
+{
+  "Success": "Database updated"
+}
+```
 
 **CURL Command**
 ```
