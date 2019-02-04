@@ -603,6 +603,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 - `note_description:string` a description of what the note is
 - `note_location_x:string` a string representing the x location of the note in the room
 - `note_location_y:string` a string representing the y location of the note in the room
+- `note_image_url:string` a string representing the URL of the image chosen for the note
 - `note_status:boolean` a status over whether the note has been remembered
 
 ```json
