@@ -4,5 +4,6 @@
   "note_description" : "Note added by example JSON",
   "note_location_x" : "10.0",
   "note_location_y" : "7.3",
+  "note_image_url": "http://1.bp.blogspot.com/-sm2PC8KW-l4/UDP7Z4Mz80I/AAAAAAAAB6g/j91oeuESMcs/s1600/apple.jpg", 
   "note_status" : false
 }

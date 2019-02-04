@@ -175,19 +175,21 @@ def new_palace():
 def unremembered_notes():
     args = request.args
     title = args['ptitle']
-    data = get_data("""SELECT * from note WHERE note_status=false AND palace_id=(SELECT palace_id from palace WHERE palace_title='%s');""", (AsIs(title),), True)
+    username = args['user']
+    data = get_data("""SELECT * from note WHERE note_status=false AND palace_id=(SELECT palace_id from palace WHERE palace_title='%s' AND user_id=(SELECT user_id from users WHERE user_username='%s'));""", (AsIs(title),AsIs(username)), True)
     return data
 
 @app.route('/progress', methods=['GET'])
 def progress():
     args = request.args
     title = args['ptitle']
-    all_notes = get_data("""SELECT COUNT(note_id) from note WHERE palace_id=(SELECT palace_id from palace WHERE palace_title='%s');""", (AsIs(title),), False)
+    username = args['user']
+    all_notes = get_data("""SELECT COUNT(note_id) from note WHERE palace_id=(SELECT palace_id from palace WHERE palace_title='%s' AND user_id=(SELECT user_id from users WHERE user_username='%s'));""", (AsIs(title),AsIs(username)), False)
     print(all_notes)
     total = []
     for elem in all_notes:
         total.append(int(elem['count']))
-    remembered_notes = get_data("""SELECT COUNT(note_id) from note WHERE note_status=true AND palace_id=(SELECT palace_id from palace WHERE palace_title='%s');""", (AsIs(title),), False)
+    remembered_notes = get_data("""SELECT COUNT(note_id) from note WHERE note_status=true AND palace_id=(SELECT palace_id from palace WHERE palace_title='%s' AND user_id=(SELECT user_id from users WHERE user_username='%s'));""", (AsIs(title),AsIs(username)), False)
     remembered = []
     for elem in remembered_notes:
         remembered.append(int(elem['count']))

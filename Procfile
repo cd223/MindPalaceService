@@ -1,2 +1,1 @@
-web: python myapp.py
-
+web: python mindpalaceservice.py

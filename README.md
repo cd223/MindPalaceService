@@ -165,7 +165,7 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewUser.json https:/
 #### Delete a user
 **Definition**
 
-- `DELETE /user/1`
+- `DELETE /user/<user_id>`
 
 **Response**
 
@@ -185,7 +185,7 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/user/1
 
 **Definition**
 
-- `DELETE /userbyusername/cjd47`
+- `DELETE /userbyusername/<user_username>`
 
 **Response**
 
@@ -277,7 +277,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 - `GET /palacesbyuser`
 
 **URL Parameters**
-- `username` the username of the user we are interested in
+- `user` the username of the user we are interested in
 
 **Response**
 
@@ -339,7 +339,7 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewPalace.json https
 #### Delete a palace
 **Definition**
 
-- `DELETE /palace/1`
+- `DELETE /palace/<palace_id>`
 
 **Response**
 
@@ -372,40 +372,74 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/palace/1
 ```json
 [
   {
-    "note_description": "Palace 1 Note 1", 
+    "note_description": "Apple Description", 
     "note_id": 1, 
-    "note_location_x": "5.3",
-    "note_location_y": "2.1", 
+    "note_image_url": "http://1.bp.blogspot.com/-sm2PC8KW-l4/UDP7Z4Mz80I/AAAAAAAAB6g/j91oeuESMcs/s1600/apple.jpg", 
+    "note_location_x": "5.33", 
+    "note_location_y": "2.11", 
     "note_status": false, 
-    "note_title": "P1N1", 
+    "note_title": "Apple", 
     "palace_id": 1
   }, 
   {
-    "note_description": "Palace 1 Note 2", 
+    "note_description": "Orange Description", 
     "note_id": 2, 
-    "note_location_x": "1.7",
+    "note_image_url": "http://producemadesimple.ca/wp-content/uploads/2015/01/orange-web-1024x768.jpg", 
+    "note_location_x": "1.7", 
     "note_location_y": "8.4", 
     "note_status": true, 
-    "note_title": "P1N2", 
+    "note_title": "Orange", 
     "palace_id": 1
   }, 
   {
-    "note_description": "Palace 2 Note 2", 
-    "note_id": 4, 
-    "note_location_x": "4.5",
-    "note_location_y": "6.3", 
-    "note_status": true, 
-    "note_title": "P2N2", 
+    "note_description": "Banana Description", 
+    "note_id": 3, 
+    "note_image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Cavendish_Banana_DS.jpg/1920px-Cavendish_Banana_DS.jpg", 
+    "note_location_x": "6.1", 
+    "note_location_y": "9.0", 
+    "note_status": false, 
+    "note_title": "Banana", 
     "palace_id": 2
   }, 
   {
-    "note_description": "Palace 3 Note 1", 
+    "note_description": "Grapes Description", 
+    "note_id": 4, 
+    "note_image_url": "http://www.viralnovelty.net/wp-content/uploads/2014/02/Red-Grapes.jpg", 
+    "note_location_x": "4.5", 
+    "note_location_y": "6.3", 
+    "note_status": true, 
+    "note_title": "Grapes", 
+    "palace_id": 2
+  }, 
+  {
+    "note_description": "Melon Description", 
     "note_id": 5, 
-    "note_location_x": "4.4",
+    "note_image_url": "https://sanjeevkapoor.files.wordpress.com/2015/08/melon.jpg", 
+    "note_location_x": "4.4", 
     "note_location_y": "3.3", 
     "note_status": false, 
-    "note_title": "P3N1", 
+    "note_title": "Melon", 
     "palace_id": 3
+  }, 
+  {
+    "note_description": "Pineapple Description", 
+    "note_id": 6, 
+    "note_image_url": "https://www.toledoblade.com/image/2013/12/05/800x_b1_cCM_z/pineapple-jpg.jpg", 
+    "note_location_x": "0.9", 
+    "note_location_y": "8.9", 
+    "note_status": true, 
+    "note_title": "Pineapple", 
+    "palace_id": 3
+  }, 
+  {
+    "note_description": "Test", 
+    "note_id": 7, 
+    "note_image_url": "https://sanjeevkapoor.files.wordpress.com/2015/08/melon.jpg", 
+    "note_location_x": "8.176919867728891", 
+    "note_location_y": "9.167381688904456", 
+    "note_status": false, 
+    "note_title": "Test", 
+    "palace_id": 1
   }
 ]
 ```
@@ -429,12 +463,13 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 ```json
 [
   {
-    "note_description": "Palace 1 Note 1", 
+    "note_description": "Apple Description", 
     "note_id": 1, 
-    "note_location_x": "5.3",
-    "note_location_y": "2.1", 
+    "note_image_url": "http://1.bp.blogspot.com/-sm2PC8KW-l4/UDP7Z4Mz80I/AAAAAAAAB6g/j91oeuESMcs/s1600/apple.jpg", 
+    "note_location_x": "5.33", 
+    "note_location_y": "2.11", 
     "note_status": false, 
-    "note_title": "P1N1", 
+    "note_title": "Apple", 
     "palace_id": 1
   }
 ]
@@ -464,12 +499,13 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 ```json
 [
   {
-    "note_description": "Palace 1 Note 1", 
+    "note_description": "Apple Description", 
     "note_id": 1, 
-    "note_location_x": "5.3",
-    "note_location_y": "2.1", 
+    "note_image_url": "http://1.bp.blogspot.com/-sm2PC8KW-l4/UDP7Z4Mz80I/AAAAAAAAB6g/j91oeuESMcs/s1600/apple.jpg", 
+    "note_location_x": "5.33", 
+    "note_location_y": "2.11", 
     "note_status": false, 
-    "note_title": "P1N1", 
+    "note_title": "Apple", 
     "palace_id": 1
   }
 ]
@@ -498,6 +534,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **URL Parameters**
 - `ptitle` the title of the palace we are interested in
+- `user` the username of the user we are interested in
 
 **Response**
 
@@ -507,12 +544,13 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 ```json
 [
   {
-    "note_description": "Palace 1 Note 1", 
+    "note_description": "Apple Description", 
     "note_id": 1, 
-    "note_location_x": "5.3",
-    "note_location_y": "2.1", 
+    "note_image_url": "http://1.bp.blogspot.com/-sm2PC8KW-l4/UDP7Z4Mz80I/AAAAAAAAB6g/j91oeuESMcs/s1600/apple.jpg", 
+    "note_location_x": "5.33", 
+    "note_location_y": "2.11", 
     "note_status": false, 
-    "note_title": "P1N1", 
+    "note_title": "Apple", 
     "palace_id": 1
   }
 ]
@@ -520,7 +558,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **CURL Command**
 ```
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/unrememberednotes?ptitle=palace%201
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/unrememberednotes?ptitle=Fruit&user=cjd47
 ```
 
 #### Get number of remembered notes and total notes in a given palace
@@ -531,6 +569,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **URL Parameters**
 - `ptitle` the title of the palace we are interested in
+- `user` the username of the user we are interested in
 
 **Response**
 
@@ -548,7 +587,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 **CURL Command**
 ```
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/unrememberednotes?ptitle=palace%201
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/progress?ptitle=Fruit&user=cjd47
 ```
 
 #### Add new note
@@ -568,11 +607,12 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 ```json
 {
-  "palace_id" : "1",
+  "palace_id" : 1,
   "note_title" : "Test Note",
   "note_description" : "Note added by example JSON",
-  "note_location_x": "10.0",
-  "note_location_y": "7.3", 
+  "note_location_x" : "10.0",
+  "note_location_y" : "7.3",
+  "note_image_url": "http://1.bp.blogspot.com/-sm2PC8KW-l4/UDP7Z4Mz80I/AAAAAAAAB6g/j91oeuESMcs/s1600/apple.jpg", 
   "note_status" : false
 }
 ```
@@ -597,7 +637,7 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewNote.json https:/
 
 **Definition**
 
-- `POST /updatenotestatus/1`
+- `POST /updatenotestatus/<note_id>`
 
 **URL Parameters**
 - `status` the new status for the current note
@@ -621,7 +661,7 @@ curl -H "Content-Type: application/json" -X POST https://mindpalaceservice.herok
 #### Delete a note
 **Definition**
 
-- `DELETE /note/1`
+- `DELETE /note/<note_id>`
 
 **Response**
 
