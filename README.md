@@ -1,6 +1,6 @@
 # "Hold That Thought" (HTT)
 - Motion-based Mind Palace generation for memorisation assistance - a BSc Computer Science dissertation (2018-19)
-- Demo: https://youtu.be/_eUD6Mm_8RA
+- Demo: https://youtu.be/4U--HYut0m8
 - A RESTful service for CRUD operations on Mind Palace project data.
 - Service URL: <https://mindpalaceservice.herokuapp.com/>
 
