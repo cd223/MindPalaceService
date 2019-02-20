@@ -77,10 +77,10 @@ def notes():
 @app.route('/note/<note_id>', methods=['GET', 'DELETE'])
 def note(note_id):
     if request.method == 'GET':
-        data = get_data("""SELECT * from note WHERE note_id=%s;""", (note_id), True)
+        data = get_data("""SELECT * from note WHERE note_id='%s';""", (AsIs(note_id),), True)
         return data
     if request.method == 'DELETE':
-        data = update_data("""DELETE from note WHERE note.note_id=%s;""", (note_id))
+        data = update_data("""DELETE from note WHERE note.note_id=%s;""", (AsIs(note_id),))
         return data
 
 @app.route('/newnote', methods=['POST'])
@@ -101,7 +101,7 @@ def update_note_status(note_id):
     args = request.args
     note_status = args['status']
     status = True if (note_status == "true") else False
-    response = update_data("""UPDATE note SET note_status=%s WHERE note_id=%s;""", (AsIs(status), note_id))
+    response = update_data("""UPDATE note SET note_status='%s' WHERE note_id='%s';""", (AsIs(status), AsIs(note_id)))
     return response
 
 @app.route('/users', methods=['GET'])
@@ -112,10 +112,10 @@ def users():
 @app.route('/user/<user_id>', methods=['GET', 'DELETE'])
 def user(user_id):
     if request.method == 'GET':
-        data = get_data("""SELECT * from users WHERE user_id=%s;""", (user_id), True)
+        data = get_data("""SELECT * from users WHERE user_id=%s;""", (AsIs(user_id),), True)
         return data
     if request.method == 'DELETE':
-        data = update_data("""DELETE from users WHERE users.user_id=%s;""", (user_id))
+        data = update_data("""DELETE from users WHERE users.user_id=%s;""", (AsIs(user_id),))
         return data
 
 @app.route('/userbyusername/<user_username>', methods=['GET', 'DELETE'])
@@ -152,10 +152,10 @@ def palacesbyuser():
 @app.route('/palace/<palace_id>', methods=['GET', 'DELETE'])
 def palace(palace_id):
     if request.method == 'GET':
-        data = get_data("""SELECT * from palace WHERE palace_id=%s;""", (palace_id), True)
+        data = get_data("""SELECT * from palace WHERE palace_id='%s';""", (AsIs(palace_id),), True)
         return data
     if request.method == 'DELETE':
-        data = update_data("""DELETE FROM palace WHERE palace.palace_id=%s;""", (palace_id))
+        data = update_data("""DELETE FROM palace WHERE palace.palace_id='%s';""", (AsIs(palace_id),))
         return data
 
 @app.route('/newpalace', methods=['POST'])
@@ -207,7 +207,7 @@ def nearest_note(palace_id):
     if xpos is None or ypos is None or radius is None:
         return {"Error":"Incorrect location format passed in URL"}, 500
 
-    data = get_data("""SELECT note_location_x, note_location_y from note WHERE palace_id=%s;""", (palace_id), False)
+    data = get_data("""SELECT note_location_x, note_location_y from note WHERE palace_id='%s';""", (AsIs(palace_id),), False)
     all_locs = []
     for elem in data:
         all_locs.append((float(elem['note_location_x']), float(elem['note_location_y'])))
@@ -217,7 +217,7 @@ def nearest_note(palace_id):
     within_rad = pow(closest_loc[0] - cur_loc[0],2) + pow(closest_loc[1] - cur_loc[1],2) <= pow(radius,2)
 
     if within_rad:
-        data = get_data("""SELECT * from note WHERE palace_id=%s AND note_location_x='%s' AND note_location_y='%s';""", (palace_id, AsIs(closest_loc[0]), AsIs(closest_loc[1])), True)
+        data = get_data("""SELECT * from note WHERE palace_id='%s' AND note_location_x='%s' AND note_location_y='%s';""", (AsIs(palace_id), AsIs(closest_loc[0]), AsIs(closest_loc[1])), True)
         return data
     else:
         response = [{"Message": "No notes within radius!"}]
