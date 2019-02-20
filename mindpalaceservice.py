@@ -80,7 +80,7 @@ def note(note_id):
         data = get_data("""SELECT * from note WHERE note_id=%s;""", (note_id), True)
         return data
     if request.method == 'DELETE':
-        data = update_data("""DELETE from note WHERE note_id=%s;""", (note_id))
+        data = update_data("""DELETE from note WHERE note.note_id=%s;""", (note_id))
         return data
 
 @app.route('/newnote', methods=['POST'])
@@ -115,7 +115,7 @@ def user(user_id):
         data = get_data("""SELECT * from users WHERE user_id=%s;""", (user_id), True)
         return data
     if request.method == 'DELETE':
-        data = update_data("""DELETE from users WHERE user_id=%s;""", (user_id))
+        data = update_data("""DELETE from users WHERE users.user_id=%s;""", (user_id))
         return data
 
 @app.route('/userbyusername/<user_username>', methods=['GET', 'DELETE'])
@@ -124,7 +124,7 @@ def user_by_username(user_username):
         data = get_data("""SELECT * from users WHERE user_username='%s';""", (AsIs(user_username),), True)
         return data
     if request.method == 'DELETE':
-        data = update_data("""DELETE from users WHERE user_username='%s';""", (AsIs(user_username),))
+        data = update_data("""DELETE from users WHERE users.user_username='%s';""", (AsIs(user_username),))
         return data
 
 @app.route('/newuser', methods=['POST'])
@@ -155,7 +155,7 @@ def palace(palace_id):
         data = get_data("""SELECT * from palace WHERE palace_id=%s;""", (palace_id), True)
         return data
     if request.method == 'DELETE':
-        data = update_data("""DELETE FROM palace WHERE palace_id = %s;""", (palace_id))
+        data = update_data("""DELETE FROM palace WHERE palace.palace_id=%s;""", (palace_id))
         return data
 
 @app.route('/newpalace', methods=['POST'])
