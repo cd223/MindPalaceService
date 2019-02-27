@@ -77,10 +77,19 @@ def notes():
 @app.route('/note/<note_id>', methods=['GET', 'DELETE'])
 def note(note_id):
     if request.method == 'GET':
-        data = get_data("""SELECT * from note WHERE note_id='%s';""", (AsIs(note_id),), True)
+        data = get_data("""SELECT * from note WHERE note.note_id='%s';""", (AsIs(note_id),), True)
         return data
     if request.method == 'DELETE':
         data = update_data("""DELETE from note WHERE note.note_id=%s;""", (AsIs(note_id),))
+        return data
+
+@app.route('/notesbypalace/<palace_id>', methods=['GET', 'DELETE'])
+def notes_by_palace(palace_id):
+    if request.method == 'GET':
+        data = get_data("""SELECT * from note WHERE note.palace_id='%s';""", (AsIs(palace_id),), True)
+        return data
+    if request.method == 'DELETE':
+        data = update_data("""DELETE from note WHERE note.palace_id=%s;""", (AsIs(palace_id),))
         return data
 
 @app.route('/newnote', methods=['POST'])
