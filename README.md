@@ -18,6 +18,7 @@ The following endpoints have been implemented
 - `GET /palace/<palace_id>`
 - `GET /palacesbyuser`
 - `GET /note/<note_id>`
+- `GET /notesbypalace/<palace_id>`
 - `GET /nearestnote/<palace_id>`
 - `GET /unrememberednotes`
 - `GET /progress`
@@ -480,6 +481,47 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/note/1
 ```
 
+#### Get notes under palace
+
+**Definition**
+
+- `GET /notesbypalace/<palace_id:integer>`
+
+**Response**
+
+- `200 OK` on success
+- `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+```json
+[
+  {
+    "note_description": "Melon Description", 
+    "note_id": 5, 
+    "note_image_url": "https://sanjeevkapoor.files.wordpress.com/2015/08/melon.jpg", 
+    "note_location_x": "4.4", 
+    "note_location_y": "3.3", 
+    "note_status": false, 
+    "note_title": "Melon", 
+    "palace_id": 3
+  }, 
+  {
+    "note_description": "Pineapple Description", 
+    "note_id": 6, 
+    "note_image_url": "https://www.toledoblade.com/image/2013/12/05/800x_b1_cCM_z/pineapple-jpg.jpg", 
+    "note_location_x": "0.9", 
+    "note_location_y": "8.9", 
+    "note_status": true, 
+    "note_title": "Pineapple", 
+    "palace_id": 3
+  }
+]
+```
+
+**CURL Command**
+```
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/notesbypalace/3
+```
+
 #### Get nearest note details
 
 **Definition**
@@ -678,4 +720,24 @@ curl -H "Content-Type: application/json" -X POST https://mindpalaceservice.herok
 **CURL Command**
 ```
 curl -X "DELETE" https://mindpalaceservice.herokuapp.com/note/1
+```
+
+**Definition**
+
+- `DELETE /notesbypalace/<palace_id>`
+
+**Response**
+
+- `200 OK` on success
+- `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+```json
+{
+  "Success": "Database updated"
+}
+```
+
+**CURL Command**
+```
+curl -X "DELETE" https://mindpalaceservice.herokuapp.com/notesbypalace/2
 ```
