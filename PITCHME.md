@@ -1,10 +1,16 @@
 # "Hold That Thought" (HTT)
 - Motion-based Mind Palace generation for memorisation assistance - a BSc Computer Science dissertation (2018-19)
 - Demo: https://youtu.be/RwE5stBE0IA
+
+---
+
 - A RESTful service for CRUD operations on Mind Palace project data.
 - Service URL: <https://mindpalaceservice.herokuapp.com/>
 
 ![HTT Logo](img/logo.png?raw=true "Hold That Thought")
+
+
+---
 
 ## REST API
 The following endpoints have been implemented 
@@ -12,6 +18,8 @@ The following endpoints have been implemented
 - `GET /users`
 - `GET /palaces`
 - `GET /notes`
+
+---
 
 - `GET /user/<user_id>`
 - `GET /userbyusername/<user_username>`
@@ -23,19 +31,27 @@ The following endpoints have been implemented
 - `GET /unrememberednotes`
 - `GET /progress`
 
+
+---
+
 - `POST /newuser`
 - `POST /newpalace`
 - `POST /newnote`
 - `POST /updatenotestatus/<note_id>`
+
+---
 
 - `DELETE /user/<user_id>`
 - `DELETE /userbyusername/<user_username>`
 - `DELETE /palace/<palace_id>`
 - `DELETE /note/<note_id>`
 
-More detail below:
+---
 
 ### USERS
+
+---
+
 #### List all users
 
 **Definition**
@@ -46,6 +62,8 @@ More detail below:
 
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+---
 
 ```json
 [
@@ -70,16 +88,22 @@ More detail below:
 ]
 ```
 
+---
+
 **CURL Command**
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/users
 ```
+
+---
 
 #### Get existing user details
 
 **Definition**
 
 - `GET /user/<user_id:integer>`
+
+---
 
 **Response**
 
@@ -97,10 +121,14 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 ]
 ```
 
+---
+
 **CURL Command**
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/user/1
 ```
+
+---
 
 **Definition**
 
@@ -111,6 +139,8 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
 
+---
+
 ```json
 [
   {
@@ -122,10 +152,14 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 ]
 ```
 
+---
+
 **CURL Command**
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/userbyusername/cjd47
 ```
+
+---
 
 #### Add new user
 
@@ -133,11 +167,15 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 - `POST /newuser`
 
+---
+
 **Arguments**
 
 - `"user_name":string` the name of the new user
 - `"user_username":string` a friendly username for the user
 - `"user_password":string` a password for the user to login to the application
+
+---
 
 ```json
 {
@@ -146,6 +184,8 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
   "user_password" : "pass"
 }
 ```
+
+---
 
 **Response**
 
@@ -157,6 +197,9 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
   "Success": "Database updated"
 }
 ```
+
+---
+
 
 **CURL Command**
 ```
@@ -168,21 +211,29 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewUser.json https:/
 
 - `DELETE /user/<user_id>`
 
+---
+
 **Response**
 
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+---
 
 ```json
 {
   "Success": "Database updated"
 }
 ```
+---
+
 
 **CURL Command**
 ```
 curl -X "DELETE" https://mindpalaceservice.herokuapp.com/user/1
 ```
+
+---
 
 **Definition**
 
@@ -193,16 +244,22 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/user/1
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
 
+---
+
 ```json
 {
   "Success": "Database updated"
 }
 ```
 
+---
+
 **CURL Command**
 ```
 curl -X "DELETE" https://mindpalaceservice.herokuapp.com/userbyusername/cjd47
 ```
+
+---
 
 ### PALACES
 #### List all palaces
@@ -211,10 +268,14 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/userbyusername/cjd47
 
 - `GET /palaces`
 
+---
+
 **Response**
 
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+---
 
 ```json
 [
@@ -239,10 +300,16 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/userbyusername/cjd47
 ]
 ```
 
+---
+
+
 **CURL Command**
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/palaces
 ```
+
+---
+
 
 #### Get existing palace details
 
@@ -250,10 +317,14 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 - `GET /palace/<palace_id:integer>`
 
+---
+
 **Response**
 
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+---
 
 ```json
 [
@@ -266,16 +337,23 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 ]
 ```
 
+---
+
+
 **CURL Command**
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/palace/1
 ```
+
+---
 
 #### Get palaces for a given user
 
 **Definition**
 
 - `GET /palacesbyuser`
+
+---
 
 **URL Parameters**
 - `user` the username of the user we are interested in
@@ -285,6 +363,8 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
 
+---
+
 ```json
 [
   {
@@ -296,10 +376,15 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 ]
 ```
 
+---
+
+
 **CURL Command**
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/palacesbyuser?user=cjd47
 ```
+
+---
 
 #### Add new palace
 
@@ -313,6 +398,9 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 - `"palace_title":string` a friendly title for the palace
 - `"palace_description":string` a description of what the palace is for
 
+---
+
+
 ```json
 {
   "user_username" : "cjd47",
@@ -320,6 +408,9 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
   "palace_description" : "Palace added by example JSON"
 }
 ```
+
+---
+
 
 **Response**
 
@@ -332,10 +423,16 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 }
 ```
 
+---
+
+
 **CURL Command**
 ```
 curl -H "Content-Type: application/json" -X POST -d @ExampleNewPalace.json https://mindpalaceservice.herokuapp.com/newpalace
 ```
+
+---
+
 
 #### Delete a palace
 **Definition**
@@ -346,6 +443,8 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewPalace.json https
 
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+---
 
 ```json
 {
@@ -358,6 +457,9 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewPalace.json https
 curl -X "DELETE" https://mindpalaceservice.herokuapp.com/palace/1
 ```
 
+---
+
+
 ### NOTES
 #### List all notes
 
@@ -365,10 +467,16 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/palace/1
 
 - `GET /notes`
 
+
+---
+
 **Response**
 
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+
+---
 
 ```json
 [
@@ -445,10 +553,15 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/palace/1
 ]
 ```
 
+---
+
 **CURL Command**
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/notes
 ```
+
+
+---
 
 #### Get existing note details
 
@@ -460,6 +573,9 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+
+---
 
 ```json
 [
@@ -476,10 +592,15 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 ]
 ```
 
+---
+
+
 **CURL Command**
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/note/1
 ```
+
+---
 
 #### Get notes under palace
 
@@ -491,6 +612,9 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+
+---
 
 ```json
 [
@@ -517,10 +641,16 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 ]
 ```
 
+
+---
+
 **CURL Command**
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/notesbypalace/3
 ```
+
+---
+
 
 #### Get nearest note details
 
@@ -532,6 +662,9 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 - `xpos` the x co-ordinate of the user's current location
 - `ypos` the y co-ordinate of the user's current location
 - `rad` the chosen senitivity radius
+
+
+---
 
 **Response**
 
@@ -553,6 +686,9 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 ]
 ```
 
+---
+
+
 or
 
 ```json
@@ -563,10 +699,15 @@ or
 ]
 ```
 
+---
+
+
 **CURL Command**
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/nearestnote/1?xpos=8.22334567&ypos=1.456566754&rad=2.99
 ```
+
+---
 
 #### Get unremembered note details
 
@@ -583,6 +724,8 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
 
+---
+
 ```json
 [
   {
@@ -598,10 +741,15 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 ]
 ```
 
+---
+
+
 **CURL Command**
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/unrememberednotes?ptitle=Fruit&user=cjd47
 ```
+
+---
 
 #### Get number of remembered notes and total notes in a given palace
 
@@ -612,6 +760,8 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 **URL Parameters**
 - `ptitle` the title of the palace we are interested in
 - `user` the username of the user we are interested in
+
+---
 
 **Response**
 
@@ -627,16 +777,23 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 ]
 ```
 
+---
+
+
 **CURL Command**
 ```
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" https://mindpalaceservice.herokuapp.com/progress?ptitle=Fruit&user=cjd47
 ```
+
+---
 
 #### Add new note
 
 **Definition**
 
 - `POST /newnote`
+
+---
 
 **Arguments**
 
@@ -647,6 +804,10 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 - `note_location_y:string` a string representing the y location of the note in the room
 - `note_image_url:string` a string representing the URL of the image chosen for the note
 - `note_status:boolean` a status over whether the note has been remembered
+
+
+---
+
 
 ```json
 {
@@ -660,6 +821,9 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 }
 ```
 
+---
+
+
 **Response**
 
 - `200 OK` on success
@@ -671,10 +835,16 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" https:
 }
 ```
 
+---
+
+
 **CURL Command**
 ```
 curl -H "Content-Type: application/json" -X POST -d @ExampleNewNote.json https://mindpalaceservice.herokuapp.com/newnote
 ```
+
+
+---
 
 #### Update note status
 
@@ -685,6 +855,9 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewNote.json https:/
 **URL Parameters**
 - `status` the new status for the current note
 
+
+---
+
 **Response**
 
 - `200 OK` on success
@@ -696,10 +869,16 @@ curl -H "Content-Type: application/json" -X POST -d @ExampleNewNote.json https:/
 }
 ```
 
+---
+
+
 **CURL Command**
 ```
 curl -H "Content-Type: application/json" -X POST https://mindpalaceservice.herokuapp.com/updatenotestatus/1?status=true
 ```
+
+---
+
 
 #### Delete a note
 **Definition**
@@ -711,16 +890,25 @@ curl -H "Content-Type: application/json" -X POST https://mindpalaceservice.herok
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
 
+
+---
+
 ```json
 {
   "Success": "Database updated"
 }
 ```
 
+---
+
+
 **CURL Command**
 ```
 curl -X "DELETE" https://mindpalaceservice.herokuapp.com/note/1
 ```
+
+
+---
 
 **Definition**
 
@@ -730,6 +918,9 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/note/1
 
 - `200 OK` on success
 - `505 INTERNAL SERVER ERROR` on failure (e.g. SQL error)
+
+
+---
 
 ```json
 {
@@ -741,3 +932,5 @@ curl -X "DELETE" https://mindpalaceservice.herokuapp.com/note/1
 ```
 curl -X "DELETE" https://mindpalaceservice.herokuapp.com/notesbypalace/2
 ```
+
+---
